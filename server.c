@@ -143,17 +143,20 @@ int main(int argc, char *argv[]) {
 	    perror("Could not accept connection\n");
 	    exit(EXIT_FAILURE);
 	  }
+
+  //----------------------------Changed for labb 2 part 4-----------------------------------------
+
     else if (strcmp(inet_ntoa(clientName.sin_addr), "127.0.0.1") == 0) //compare new client to blacklisted address(localhost in this case)
     {
       close(clientSocket);
       printf("Connection refused, address blacklisted.\n");
     }
-    else
+    else //If no error then connect client
     {
     printf("Server: Connect from client %s, port %d\n", inet_ntoa(clientName.sin_addr), ntohs(clientName.sin_port));
 	  FD_SET(clientSocket, &activeFdSet);
     }
-	
+	//--------------------------------------------------------------------------------------------------------
 	}
 	else {
 	  /* Data arriving on an already connected socket */
